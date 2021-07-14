@@ -13,7 +13,47 @@ const tests: Test[] = [
 		function: async () => {
 			assert.strictEqual(true, false)
 		}
-	}
+	},
+	{
+		name: 'success test',
+		function: async () => {
+			assert.strictEqual(true, true)
+		}
+	},
+	{
+		name: 'fail test',
+		function: async () => {
+			assert.strictEqual(true, false)
+		}
+	},
+	{
+		name: 'success test',
+		function: async () => {
+			assert.strictEqual(true, true)
+		}
+	},
+	{
+		name: 'fail test',
+		function: async () => {
+			assert.strictEqual(true, false)
+		},
+	},
+	{
+		name: 'fail test',
+		function: async () => {
+			assert.strictEqual(true, false)
+		},
+	}, {
+		name: 'fail test',
+		function: async () => {
+			assert.strictEqual(true, false)
+		},
+	}, {
+		name: 'fail test',
+		function: async () => {
+			assert.strictEqual(true, false)
+		},
+	},
 ]
 
 export default tests;

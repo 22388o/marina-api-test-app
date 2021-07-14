@@ -9,11 +9,18 @@ export interface RunnerProps {
 
 const Runner: React.FC<RunnerProps> = ({ tests }) => {
   const [results, setResults] = useState<TestResult[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const runTests = async () => {
-    setResults([]);
-    for await (const testResult of testRunner(tests)) {
-      setResults((r) => r.concat([testResult]));
+    if (isLoading) return;
+    setIsLoading(true);
+    try {
+      setResults([]);
+      for await (const testResult of testRunner(tests)) {
+        setResults((r) => r.concat([testResult]));
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -22,11 +29,19 @@ const Runner: React.FC<RunnerProps> = ({ tests }) => {
   ));
 
   return (
-    <div>
+    <div className="flex flex-row-reverse justify-between w-full m-5">
       <div>
-        <button onClick={runTests}>RUN</button>
+        <div className="flex flex-col-reverse">
+          <span className="text-sm m-2 pb-3 animate-pulse">loading...</span>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-3"
+            onClick={runTests}
+          >
+            RUN
+          </button>
+        </div>
       </div>
-      <div>{views}</div>
+      <div className="ml-3">{views}</div>
     </div>
   );
 };
