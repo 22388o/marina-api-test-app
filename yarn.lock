@@ -7213,10 +7213,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-marina-provider@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/marina-provider/-/marina-provider-1.2.0.tgz#db5a59092978a4a010c0cf99f86be9624666b8c8"
-  integrity sha512-Z4uh9v6JifXfxTdkFKM2rhoBny3wcroQ1m9Swi78+17qVHB4VW0+h3DW4GNrXX+cHaTlzR2gMQvz1nIxP1gclQ==
+marina-provider@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/marina-provider/-/marina-provider-1.3.0.tgz#ee26222816570e5649457c5eb6f3078433af5cd8"
+  integrity sha512-J00cMcynnNwLut8GdbLNHSHR7jKUGcaiJfExgomIDbIMXJD/nZZQlxg8/zzPsAnujMx/aAEqqfEj+h4PIohp9g==
 
 md5.js@^1.3.4:
   version "1.3.5"
