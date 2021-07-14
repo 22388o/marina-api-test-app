@@ -6,11 +6,13 @@ import { RunnerResult, Test, TestResult } from "./types";
  * return the Runner result at the end.
  * @param tests an array of tests
  */
-export async function* testRunner(tests: Test[]) {
+export async function* testRunner(tests: Test[], before: () => Promise<void>) {
   const result: RunnerResult = {
     fail: 0,
     success: 0,
   };
+
+  await before();
 
   for (const test of tests) {
     const testResult = await runTest(test);

@@ -39,9 +39,9 @@ const tests: Test[] = [
 		},
 	},
 	{
-		name: 'fail test',
+		name: 'long time test',
 		function: async () => {
-			assert.strictEqual(true, false)
+			await new Promise(resolve => setTimeout(() => resolve(''), 3000))
 		},
 	}, {
 		name: 'fail test',
