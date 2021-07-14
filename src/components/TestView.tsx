@@ -43,7 +43,7 @@ const TestView: React.FC<TestResult & { index: number }> = ({
   return (
     <div
       className={classNames(
-        "mb-2 w-96 flex flex-row justify-between m-auto bg-gradient-to-r  p-6 gap-8 rounded-lg border-2 ",
+        "mb-2 w-106 flex flex-row justify-between m-auto bg-gradient-to-r  p-6 gap-8 rounded-lg border-2 ",
         {
           "from-green-700 via-green-800 to-green-900 border-green-500": success,
         },

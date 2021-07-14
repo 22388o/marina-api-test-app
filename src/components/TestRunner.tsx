@@ -1,4 +1,3 @@
-import { MarinaProvider } from "marina-provider";
 import { useState } from "react";
 import { testRunner } from "../runner";
 import { Test, TestResult } from "../runner/types";
