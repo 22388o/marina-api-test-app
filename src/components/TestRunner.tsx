@@ -36,7 +36,9 @@ const Runner: React.FC<RunnerProps> = ({ tests }) => {
   };
 
   const views = results.map((result, index) => (
-    <TestView key={index} index={index} {...result} />
+    <span className={result.success ? "success" : "error"}>
+      <TestView key={index} index={index} {...result} />
+    </span>
   ));
 
   return (
