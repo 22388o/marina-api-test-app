@@ -1,16 +1,19 @@
 import { Test } from "./runner/types";
 import * as assert from 'assert';
 import { getMarina } from "./utils/marina";
+import { MarinaEventType } from "marina-provider";
 
 const marina = getMarina();
 
 const tests: Test[] = [
+	// isEnabled
 	{
 		name: 'isEnabled should return true',
 		function: async () => {
 			assert.strictEqual(await marina.isEnabled(), true);
 		}
 	},
+	// enable
 	{
 		name: 'enable should throw an error',
 		function: async () => {
@@ -23,6 +26,7 @@ const tests: Test[] = [
 			throw new Error('enable() do not throw any errors')
 		}
 	},
+	// getNetwork
 	{
 		name: 'getNetwork should return "liquid" or "regtest"',
 		function: async () => {
@@ -31,6 +35,7 @@ const tests: Test[] = [
 			throw new Error('network value is invalid')
 		}
 	},
+	// getNextAddress
 	{
 		name: 'getNextAddress should generate a new address',
 		function: async () => {
@@ -42,6 +47,7 @@ const tests: Test[] = [
 			}
 		}
 	},
+	// getNextChangeAddress
 	{
 		name: 'getNextChangeAddress should generate a new change address',
 		function: async () => {
@@ -53,6 +59,7 @@ const tests: Test[] = [
 			}
 		}
 	},
+	// getAddresses
 	{
 		name: 'getAddresses should return generated addresses',
 		function: async () => {
@@ -67,6 +74,7 @@ const tests: Test[] = [
 				throw new Error('getAddresses does not return the next change address');
 		}
 	},
+	// getCoins
 	{
 		name: 'getCoins should return an array',
 		function: async () => {
@@ -75,25 +83,43 @@ const tests: Test[] = [
 			throw new Error('do not return an array')
 		},
 	},
+	// getTransactions
 	{
 		name: 'getTransactions should return an array',
 		function: async () => {
 			const txs = await marina.getTransactions();
 			if (Array.isArray(txs)) return;
 			throw new Error('do not return an array')
-		},
-	}, {
+		}
+	},
+	// getBalances 
+	{
 		name: 'getBalances should return an array',
 		function: async () => {
 			const balances = await marina.getBalances();
 			if (Array.isArray(balances)) return;
 			throw new Error('do not return an array')
-		},
-	}, {
-		name: 'on/off test',
+		}
+	},
+	// on/off 
+	{
+		name: 'on() should return random event id',
 		function: async () => {
 			const id = marina.on('DISABLED', () => '')
 			const idBis = marina.on('DISABLED', () => '')
+			assert.notDeepStrictEqual(id, idBis);
+		},
+	},
+	{
+		name: 'on() should throw an error with invalid event type name',
+		function: async () => {
+			const id = marina.on('DISABLED', () => '')
+			const idBis = marina.on('DISABLED', () => '')
+
+			assert.throws(() => {
+				marina.on('notamarinaeventType' as MarinaEventType, () => '');
+			})
+
 			assert.notDeepStrictEqual(id, idBis);
 		},
 	},
