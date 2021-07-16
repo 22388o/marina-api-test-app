@@ -1,8 +1,8 @@
 # Marina API test App
 
-![GitHub Pages](https://github.com/louisinger/marina-api-test-app/actions/workflows/gh-pages.yml/badge.svg) 
+![GitHub Pages](https://github.com/vulpemventures/marina-api-test-app/actions/workflows/gh-pages.yml/badge.svg)
 
-Visit: https://louisinger.github.io/marina-api-test-app/
+Visit: https://vulpemventures.github.io/marina-api-test-app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
