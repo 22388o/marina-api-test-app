@@ -1,5 +1,7 @@
 # Marina API test App
 
+hosted on GH pages: https://louisinger.github.io/marina-api-test-app/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Add a Marina test
