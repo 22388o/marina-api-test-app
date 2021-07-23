@@ -12,16 +12,28 @@ const Runner: React.FC<RunnerProps> = ({ tests }) => {
   const [results, setResults] = useState<TestResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [marinaIsLoading, setMarinaIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(undefined);
+
   const before = async () => {
-    const marina = getMarina();
-    const isEnabled = await marina.isEnabled();
-    if (!isEnabled) {
-      await marina.enable();
+    try {
+      setMarinaIsLoading(true);
+      const marina = await getMarina();
+      const isEnabled = await marina.isEnabled();
+      if (!isEnabled) {
+        await marina.enable();
+      }
+    } catch (err) {
+      console.error(err);
+      setErrorMsg(err.message || err);
+    } finally {
+      setMarinaIsLoading(false);
     }
   };
 
   const runTests = async () => {
-    if (isLoading) return;
+    if (isLoading || marinaIsLoading) return;
+    setErrorMsg(undefined);
     setIsLoading(true);
     try {
       setResults([]);
@@ -42,11 +54,21 @@ const Runner: React.FC<RunnerProps> = ({ tests }) => {
   ));
 
   return (
-    <div className="flex flex-row-reverse justify-between w-full m-5">
+    <div className="flex flex-row-reverse justify-between">
       <div>
         <div className="flex flex-col-reverse">
           {isLoading && (
-            <span className="text-sm m-2 pb-3 animate-pulse">loading...</span>
+            <span className="text-sm text-center m-2 pb-3 animate-pulse">
+              tests are loading...
+            </span>
+          )}
+          {marinaIsLoading && (
+            <span className="text-sm text-center m-2 pb-3 animate-pulse">
+              Trying to access your Marina...
+            </span>
+          )}
+          {errorMsg && (
+            <span className="text-sm text-center m-2 pb-3">{errorMsg}</span>
           )}
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-3"
