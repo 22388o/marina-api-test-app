@@ -1,4 +1,4 @@
-import { MarinaProvider } from 'marina-provider';
+import { MarinaProvider, detectProvider } from 'marina-provider';
 
 const MAX_TRY = 60;
 const INTERVAL_MS = 1000;
